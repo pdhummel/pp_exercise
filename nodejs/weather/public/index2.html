@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Home - High Jump Weather Project</title>
+  
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script type="text/javascript" charset="utf-8" src="/js/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.min.js"></script>
+  
+
+<style>
+  #weather-table
+  {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    background: #faf9f0;
+    margin: 45px;
+    width: 480px;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  #weather-table th
+  {
+    font-size: 14px;
+    font-weight: normal;
+    color: #039;
+    padding: 10px 8px;
+    border-bottom: 2px solid #6678b1;
+  }
+  #weather-table td
+  {
+    color: #669;
+    padding: 9px 8px 0px 8px;
+  }
+  #weather-table tbody tr td
+  {
+    color: #009;
+  }
+
+</style>  
+  
+<script>
+  $(document).ready(function() {
+    get_all_weather_data();
+    
+    // This works, but then ordering of our table is not guaranteed.
+    //get_weather("CA", "Campbell");
+    //get_weather("NE", "Omaha");
+    //get_weather("TX", "Austin");
+    //get_weather("MD", "Timonium");    
+  } );   
+    
+  /*
+   * This function retrieves the weather data for all of our cities at once
+   * and then outputs the results. 
+   */
+  function get_all_weather_data() {
+    $.ajax({
+      url: "http://localhost:3000/allweather/",
+      type: "GET",
+      cache: false,
+      success: function(response) {
+        var cities = new Array("CA/Campbell","NE/Omaha","TX/Austin", "MD/Timonium");
+        for (i=0; i<cities.length; i++) {
+          if (cities[i] in response) {
+            var current_observation = response[cities[i]].current_observation;
+            if (!(typeof current_observation === 'undefined')) {
+              output_weather_row(current_observation);
+            } else {
+              console.log("current_observation is not defined for " + city);
+            }
+          }
+        }
+      },
+      error:  function() {
+        console.log("error from get_all_weather_data call");
+      } 
+    });  
+  }  
+    
+  /*
+   * This retries the weather data for a single city and then outputs it.
+   */
+  function get_weather(state, city) {
+    $.ajax({
+      url: "http://localhost:3000/weather/" + state + "/" + city,
+      type: "GET",
+      cache: false,
+      success: function(response) {
+        var current_observation = response.current_observation;
+        if (!(typeof current_observation === 'undefined')) {
+          output_weather_row(current_observation);
+        } else {
+          console.log("current_observation is not defined");
+        }
+      },
+      error:  function() {
+        console.log("error from get_weather call");
+      } 
+    });  
+  }  
+     
+  /*
+   *  This outputs the weather data of a city to the table.
+   */
+  function output_weather_row(current_observation) {
+    var location = current_observation.display_location.full;
+    var temperature = current_observation.temperature_string;
+    var weather = current_observation.weather;
+    console.log(location + ": " + temperature + ", " + weather);
+    var htmlRow = "<tr><td>" + location + "</td><td>" + temperature + "</td><td>" + weather + "</td></tr>";
+    $("#weatherData").append(htmlRow);
+  }     
+     
+</script>  
+
+</head>
+
+<body>
+<header>
+  <h1>High Jump Weather Project</h1>
+</header>
+
+<div class="container">
+  <div class="main-content">
+  <table id="weather-table">
+    <thead> 
+    <tr>
+      <th>Location </th>
+      <th>Temperature </th>
+      <th>Conditions</th>
+    </tr>
+    </thead>
+    <tbody id="weatherData">
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+</body>
+</html>

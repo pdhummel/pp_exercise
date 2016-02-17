@@ -1,0 +1,138 @@
+e4d264fc774deafa
+
+
+http://api.wunderground.com/api/e4d264fc774deafa/conditions/q/CA/Campbell.json
+http://api.wunderground.com/api/e4d264fc774deafa/conditions/q/NE/Omaha.json
+http://api.wunderground.com/api/e4d264fc774deafa/conditions/q/TX/Austin.json
+http://api.wunderground.com/api/e4d264fc774deafa/conditions/q/MD/Timonium.json
+
+
+host=api.wunderground.com
+key=e4d264fc774deafa
+location
+
+"http://" + host + "/api/" + key + "/conditions/q/" + location + ".json";
+
+{
+  "response": {
+  "version":"0.1",
+  "termsofService":"http://www.wunderground.com/weather/api/d/terms.html",
+  "features": {
+  "conditions": 1
+  }
+	}
+  ,	"current_observation": {
+		"image": {
+		"url":"http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png",
+		"title":"Weather Underground",
+		"link":"http://www.wunderground.com"
+		},
+		"display_location": {
+		"full":"Omaha, NE",
+		"city":"Omaha",
+		"state":"NE",
+		"state_name":"Nebraska",
+		"country":"US",
+		"country_iso3166":"US",
+		"zip":"68101",
+		"magic":"1",
+		"wmo":"99999",
+		"latitude":"41.26331329",
+		"longitude":"-95.93376160",
+		"elevation":"299.00000000"
+		},
+		"observation_location": {
+		"full":"CarterLake.org, Carter Lake, Iowa",
+		"city":"CarterLake.org, Carter Lake",
+		"state":"Iowa",
+		"country":"US",
+		"country_iso3166":"US",
+		"latitude":"41.289864",
+		"longitude":"-95.916176",
+		"elevation":"980 ft"
+		},
+		"estimated": {
+		},
+		"station_id":"KIACARTE1",
+		"observation_time":"Last Updated on November 22, 11:17 AM CST",
+		"observation_time_rfc822":"Fri, 22 Nov 2013 11:17:32 -0600",
+		"observation_epoch":"1385140652",
+		"local_time_rfc822":"Fri, 22 Nov 2013 11:17:32 -0600",
+		"local_epoch":"1385140652",
+		"local_tz_short":"CST",
+		"local_tz_long":"America/Chicago",
+		"local_tz_offset":"-0600",
+		"weather":"Mostly Cloudy",
+		"temperature_string":"22.2 F (-5.4 C)",
+		"temp_f":22.2,
+		"temp_c":-5.4,
+		"relative_humidity":"56%",
+		"wind_string":"Calm",
+		"wind_dir":"North",
+		"wind_degrees":355,
+		"wind_mph":0.1,
+		"wind_gust_mph":0,
+		"wind_kph":0,
+		"wind_gust_kph":0,
+		"pressure_mb":"1042",
+		"pressure_in":"30.76",
+		"pressure_trend":"+",
+		"dewpoint_string":"9 F (-13 C)",
+		"dewpoint_f":9,
+		"dewpoint_c":-13,
+		"heat_index_string":"NA",
+		"heat_index_f":"NA",
+		"heat_index_c":"NA",
+		"windchill_string":"22 F (-5 C)",
+		"windchill_f":"22",
+		"windchill_c":"-5",
+		"feelslike_string":"22 F (-5 C)",
+		"feelslike_f":"22",
+		"feelslike_c":"-5",
+		"visibility_mi":"10.0",
+		"visibility_km":"16.1",
+		"solarradiation":"--",
+		"UV":"1","precip_1hr_string":"0.00 in ( 0 mm)",
+		"precip_1hr_in":"0.00",
+		"precip_1hr_metric":" 0",
+		"precip_today_string":"0.00 in (0 mm)",
+		"precip_today_in":"0.00",
+		"precip_today_metric":"0",
+		"icon":"mostlycloudy",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/mostlycloudy.gif",
+		"forecast_url":"http://www.wunderground.com/US/NE/Omaha.html",
+		"history_url":"http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=KIACARTE1",
+		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=41.289864,-95.916176"
+	}
+}
+
+
+
+
+server.js
+weather_api.js
+
+
+
+
+
+https://github.com/mikeal/request
+
+localhost:3000/conditions/CA/Campbell
+
+response
+  display_location.full
+  .current_observation
+    .temp_f
+    .temperature_string	
+	."forecast_url":"http://www.wunderground.com/US/CA/Campbell.html"    
+    .wind_string
+    .weather
+    
+    
+
+tr: td #{allWeatherDataForCities['CA/Campbell'].current_observation.display_location.full}
+    td #{allWeatherDataForCities['CA/Campbell'].current_observation.display_location.full}
+    td #{allWeatherDataForCities['CA/Campbell'].current_observation.display_location.full}
+
+

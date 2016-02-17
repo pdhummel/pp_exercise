@@ -1,0 +1,46 @@
+!!!5
+html
+  head
+    title #{title} - High Jump Weather Project
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    style
+      #weather-table
+      {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        background: #faf9f0;
+        margin: 45px;
+        width: 480px;
+        border-collapse: collapse;
+        text-align: left;
+      }
+      #weather-table th
+      {
+        font-size: 14px;
+        font-weight: normal;
+        color: #039;
+        padding: 10px 8px;
+        border-bottom: 2px solid #6678b1;
+      }
+      #weather-table td
+      {
+        color: #669;
+        padding: 9px 8px 0px 8px;
+      }
+      #weather-table tbody tr td
+      {
+        color: #009;
+      }
+
+  body
+    header
+      h1 High Jump Weather Project
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express, Jade and Stylus
+      
